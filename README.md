@@ -9,7 +9,11 @@
 - Separar cada item do JSON em um item que retorna 2 propiedades (nome, image) 
   - Deixe mais uma propiedade rank para facilitar na separação
   - Adicionei um `movies.json` para fazer a manipulação através dele para não gastar a cota de API
-  - 
+
+## Day Three
+
+- Padronização do modelo do filme (Concluído desde o dia #2)
+- Adicionar os campos `year` e `rating` para cada filme
 
 
 

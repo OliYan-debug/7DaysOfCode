@@ -21,7 +21,7 @@ public class Main {
         JsonNode jsonNode = mapper.readTree(jsonString);
         String arrayJson = jsonNode.get("items").toString();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<Movie> movies = mapper.readValue(arrayJson, new TypeReference<List<Movie>>() {});
+        List<Movie> movies = mapper.readValue(arrayJson, new TypeReference<List<Movie>>(){});
         movies.forEach(System.out::println);
 
     }
