@@ -15,7 +15,10 @@
 - Padronização do modelo do filme (Concluído desde o dia #2)
 - Adicionar os campos `year` e `rating` para cada filme
 
+## Day Four
 
+- Gerar um html com todos os filmes da lista
+  > Fazer isso não é uma boa prática mas como o intuito é testar conhecimentos e entender o fluxo que uma api deve seguir
 
 
 
