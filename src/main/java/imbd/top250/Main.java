@@ -6,7 +6,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import imbd.top250.Model.Movie;
 import static imbd.top250.Util.CallApi.run;
+
+
+import imbd.top250.Util.HtmlGenerator;
 import imbd.top250.env.Credentials;
+
+import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -22,8 +27,11 @@ public class Main {
         String arrayJson = jsonNode.get("items").toString();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         List<Movie> movies = mapper.readValue(arrayJson, new TypeReference<List<Movie>>(){});
-        movies.forEach(System.out::println);
-
+//        movies.forEach(System.out::println);
+        PrintWriter printWriter = new PrintWriter("src/main/resources/index.html", "UTF-8");
+        HtmlGenerator htmlGenerator = new HtmlGenerator(printWriter);
+        htmlGenerator.generate(movies);
+        printWriter.close();
     }
 
 }
