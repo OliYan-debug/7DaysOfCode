@@ -20,6 +20,9 @@
 - Gerar um html com todos os filmes da lista
   > Fazer isso não é uma boa prática mas como o intuito é testar conhecimentos e entender o fluxo que uma api deve seguir
 
+## Day Five
+
+- Refatoração e Encapsulamento do Código
 
 
 
