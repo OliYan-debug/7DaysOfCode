@@ -1,5 +1,6 @@
 package imbd.top250.Util;
 
+import imbd.top250.Model.Content;
 import imbd.top250.Model.Movie;
 
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ public class HtmlGenerator {
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">				\t
-                <title>Top 250 Movies (IMDB)</title>
+                <title>My Auto Generated HTML</title>
             </head>
             <body>
             <div class="container d-flex flex-wrap align-items-center">
@@ -26,7 +27,7 @@ public class HtmlGenerator {
                     <h5 class="card-header" style="text-align: start;">%s</h5>
                     <div class="card-body">
                         <img class="card-img" style="max-height: 200px; max-width:150px" src="%s" alt="%s">
-                        <p class="card-text mt-2">Nota: %s - Ano: %s</p>
+                        <p class="card-text mt-2">Ano: %s</p>
                     </div>
                 </div>
             """;
@@ -41,16 +42,15 @@ public class HtmlGenerator {
     public HtmlGenerator(PrintWriter writer){
         this.writer = writer;
     }
-    public void generate(List<Movie> movies){
+    public void generate(List<? extends Content> models){
         writer.println(top);
 
-        for(Movie movie : movies){
+        for(Content model : models){
             writer.println(String.format(divTemplate,
-                    movie.getTitle(),
-                    movie.getImage(),
-                    movie.getTitle(),
-                    movie.getRating(),
-                    movie.getYear()
+                    model.title(),
+                    model.imageUrl(),
+                    model.title(),
+                    model.year()
                     ));
         }
 

@@ -24,8 +24,11 @@
 
 - Refatoração e Encapsulamento do Código
 
+## Day Six
 
-
+- Deixar o código mais genêrico para aceitar outro tipos de requests
+- Adicionado integração com a marvel api
+- Refatoração e Adição de algumas classes e interfaces para melhor organização
 
 ## Dependências 
 

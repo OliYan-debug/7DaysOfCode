@@ -6,17 +6,19 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import imbd.top250.Model.Movie;
+import imbd.top250.Api.JsonParser;
 
 import java.util.List;
 
-public class ImdbJsonParser {
+public class ImdbMovieParser implements JsonParser {
     private static final ObjectMapper mapper = new ObjectMapper();
     private String jsonString;
 
-    public  ImdbJsonParser(String jsonString){
+    public ImdbMovieParser(String jsonString){
         this.jsonString = jsonString;
     }
-    public List<Movie> generateMovies(){
+    @Override
+    public List<Movie> parse(){
         try {
             JsonNode jsonNode = mapper.readTree(this.jsonString);
             String arrayJson = jsonNode.get("items").toString();
@@ -27,5 +29,9 @@ public class ImdbJsonParser {
             throw new RuntimeException(e);
         }
 
+    }
+    @Override
+    public String type() {
+        return "Movie";
     }
 }
