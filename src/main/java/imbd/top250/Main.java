@@ -1,36 +1,27 @@
 package imbd.top250;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import imbd.top250.Model.Movie;
-import static imbd.top250.Util.CallApi.run;
-
-
 import imbd.top250.Util.HtmlGenerator;
+import imbd.top250.Imdb.ImdbJsonParser;
 import imbd.top250.env.Credentials;
+import imbd.top250.Imdb.ImdbApiClient;
 
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        String url = "https://imdb-api.com/en/API/Top250Movies/" + Credentials.getApiKey();
-        String jsonString = run(url);
+        String url = "https://imdb-api.com/en/API/Top250Movies/";
+        String apiKey = Credentials.getApiKey();
+        String jsonString = new ImdbApiClient(apiKey).getBody(url);
 //        String jsonString = getResource("movies.json");
-        ObjectMapper mapper = new ObjectMapper();
-
-        JsonNode jsonNode = mapper.readTree(jsonString);
-        String arrayJson = jsonNode.get("items").toString();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<Movie> movies = mapper.readValue(arrayJson, new TypeReference<List<Movie>>(){});
+        List<Movie> movies = new ImdbJsonParser(jsonString).generateMovies();
 //        movies.forEach(System.out::println);
-        PrintWriter printWriter = new PrintWriter("src/main/resources/index.html", "UTF-8");
-        HtmlGenerator htmlGenerator = new HtmlGenerator(printWriter);
-        htmlGenerator.generate(movies);
+        PrintWriter printWriter = new PrintWriter("src/main/resources/index.html", StandardCharsets.UTF_8);
+        new HtmlGenerator(printWriter).generate(movies);
         printWriter.close();
     }
 
