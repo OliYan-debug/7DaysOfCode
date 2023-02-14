@@ -2,13 +2,11 @@ package imbd.top250.Marvel;
 
 import imbd.top250.Api.ApiClient;
 import imbd.top250.Util.HashGenerator;
-import imbd.top250.env.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 
 public class MarvelApiClient implements ApiClient {
