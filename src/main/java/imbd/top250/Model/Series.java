@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
 
-public class Series implements Content {
+public class Series implements Content, Comparable<Series> {
     @JsonProperty("title")
     private String title;
     private String imageUrl;
@@ -37,11 +37,21 @@ public class Series implements Content {
     }
 
     @Override
+    public String type() {
+        return "Series";
+    }
+
+    @Override
     public String toString() {
         return "Series{" +
                 "title='" + title + '\'' +
                 ", imageUrl='" + this.imageUrl + '\'' +
                 ", year='" + year + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Series outro) {
+        return this.title().compareTo(outro.title());
     }
 }
