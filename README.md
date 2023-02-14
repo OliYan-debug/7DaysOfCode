@@ -27,7 +27,7 @@ git clone https://github.com/OliYan-debug/7DaysOfCode.git
 
 ```
 
-- Dentro do pacote enc crie a Classe `Credentials` e implemente a classe `Keys` do pacote API e Adicione todos os métodos com suas respectivas chaves para cada serviço
+- Dentro do pacote env crie a Classe `Credentials` e implemente a classe `Keys` do pacote API e Adicione todos os métodos com suas respectivas chaves para cada serviço
 
 - Criando uma lista com todos os tops 250 Filmes do IMDB
 
