@@ -1,8 +1,6 @@
 package imbd.top250.Util;
 
 import imbd.top250.Model.Content;
-import imbd.top250.Model.Movie;
-
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -23,8 +21,9 @@ public class HtmlGenerator {
             """;
     private String divTemplate =
             """
-                <div class="card m-2 p-2 text-white bg-dark mb-3" style="width: 250px; height:400px; text-align:center; font-size: 1.2rem">
+                <div class="card m-2 p-2 text-white bg-dark mb-3" style="width: 250px; height:450px; text-align:center; font-size: 1.2rem">
                     <h5 class="card-header" style="text-align: start;">%s</h5>
+                    <p class="text-muted">%s</p>
                     <div class="card-body">
                         <img class="card-img" style="max-height: 200px; max-width:150px" src="%s" alt="%s">
                         <p class="card-text mt-2">Ano: %s</p>
@@ -48,6 +47,7 @@ public class HtmlGenerator {
         for(Content model : models){
             writer.println(String.format(divTemplate,
                     model.title(),
+                    model.type(),
                     model.imageUrl(),
                     model.title(),
                     model.year()
@@ -55,5 +55,6 @@ public class HtmlGenerator {
         }
 
         writer.println(bottom);
+        System.out.println("Html gerado com sucesso!");
     }
 }

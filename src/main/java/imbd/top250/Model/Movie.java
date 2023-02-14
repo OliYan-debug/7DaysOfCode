@@ -1,6 +1,7 @@
 package imbd.top250.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.NotNull;
 
 
 public record Movie(
@@ -10,6 +11,15 @@ public record Movie(
         String year,
         @JsonProperty("imDbRating")
         String rating)
-        implements Content{
+        implements Content,  Comparable<Movie>{
 
+        @Override
+        public int compareTo(@NotNull Movie outro) {
+                return this.title().compareTo(outro.title());
+        }
+
+        @Override
+        public String type() {
+                return "Movie";
+        }
 }
